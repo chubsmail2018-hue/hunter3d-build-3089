@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scenes/Target.tscn" id="2_packed"]
+[ext_resource type="PackedScene" path="res://scenes/Hunter.tscn" id="3_packed"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1"]
+size = Vector3(50, 0.5, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape_2"]
+size = Vector3(50, 0.5, 50)
+
+[sub_resource type="Environment" id="Environment_3"]
+background_mode = 1
+background_color = Color(0.2, 0.3, 0.4, 1)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_script")
+target_scene = ExtResource("2_packed")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 15, 0)
+
+[node name="Ground" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_1")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape_2")
+
+[node name="Hunter" parent="." instance=ExtResource("3_packed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)

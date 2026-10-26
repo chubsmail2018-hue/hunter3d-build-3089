@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bmnmidyo0kqut"]
+
+[ext_resource type="Script" uid="uid://b4ahv1oqa5xjp" path="res://scripts/zombie.gd" id="1_zomb"]
+
+[sub_resource type="Skin" id="Skin_4qvqq"]
+
+[sub_resource type="CapsuleShape3D" id="Shape_Z"]
+radius = 0.6
+
+[node name="Zombie" type="CharacterBody3D" unique_id=701285554]
+script = ExtResource("1_zomb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1242822215]
+skin = SubResource("Skin_4qvqq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1450648432]
+shape = SubResource("Shape_Z")
